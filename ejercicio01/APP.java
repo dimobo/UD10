@@ -9,30 +9,36 @@ public class APP {
 
 		AdivinaNumero a = new AdivinaNumero();
 		boolean fi = false;
+		int cnt = 0, num;
 
+		// Este bucle es el que contara los intentos que hemos necesitado i nos ira
+		// pidiendo numeros.
 		while (fi == false) {
-
-			a.comparar(pedirNumero("si"));
+			num = pedirNumero("Inserte un numero:");
+			if (num != 0)
+				fi = a.comparar(num);
+			cnt++;
+			System.out.println("\n");
 		}
-
+		System.out.println("Has tardado " + cnt + " En adivinar el numero.");
 	}
 
 	// Este metodo es el encargado de pedir el numero al usuario y de lanzar la
 	// excepcion en caso de que el valor no sea valido.
 	public static int pedirNumero(String text) {
-
 		Scanner s = new Scanner(System.in);
 		int num = 0;
 
+		System.out.println(text);
 		try {
-			System.out.println(text);
 			num = s.nextInt();
+
 		} catch (InputMismatchException e) {
 			System.out.println("Valor introducido no válido, has de introducir un numero.");
+			return 0;
 		}
-
-		s.close();
 		return num;
+
 	}
 
 }
